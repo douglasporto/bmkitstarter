@@ -7,3 +7,4 @@ tmp/*
 !tmp/.gitkeep
 
 dist
+api/__tests__/database.sqlite
