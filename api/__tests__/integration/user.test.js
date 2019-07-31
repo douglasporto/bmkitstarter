@@ -14,8 +14,8 @@ describe('Users', () => {
       .send(user);
     expect(response.body).toHaveProperty('id');
   });
-  it('Should be unable register when user exist', async () => {
-    const user = await factory.create('User', {
+  it('Should not be able register when user exist', async () => {
+    await factory.create('User', {
       email: 'douglasporto@brainmind.com.br',
     });
     const newUser = await factory.attrs('User', {
@@ -26,7 +26,7 @@ describe('Users', () => {
       .send(newUser);
     expect(response.body.error).toBe('User already exist');
   });
-  it('Should be unable register when not send name', async () => {
+  it('Should not be able register when not send name', async () => {
     const response = await request(app)
       .post('/register')
       .send({
@@ -35,7 +35,7 @@ describe('Users', () => {
       });
     expect(response.body.error).toBe('name is a required field');
   });
-  it('Should be unable register when not send email', async () => {
+  it('Should not be able register when not send email', async () => {
     const response = await request(app)
       .post('/register')
       .send({
@@ -44,7 +44,7 @@ describe('Users', () => {
       });
     expect(response.body.error).toBe('e-mail is a required field');
   });
-  it('Should be unable register when send invalid email', async () => {
+  it('Should not be able register when send invalid email', async () => {
     const response = await request(app)
       .post('/register')
       .send({
@@ -54,7 +54,7 @@ describe('Users', () => {
       });
     expect(response.body.error).toBe('email must be a valid email');
   });
-  it('Should be unable register when not send password', async () => {
+  it('Should not be able register when not send password', async () => {
     const response = await request(app)
       .post('/register')
       .send({
@@ -63,7 +63,7 @@ describe('Users', () => {
       });
     expect(response.body.error).toBe('password is a required field');
   });
-  it('Should be unable register when send password with less 6 characters', async () => {
+  it('Should not be able register when send password with less 6 characters', async () => {
     const response = await request(app)
       .post('/register')
       .send({
@@ -73,7 +73,7 @@ describe('Users', () => {
       });
     expect(response.body.error).toBe('password must be at least 6 characters');
   });
-  it('Should be unable register when send password with more 10 characters', async () => {
+  it('Should not be able register when send password with more 10 characters', async () => {
     const response = await request(app)
       .post('/register')
       .send({
