@@ -8,3 +8,7 @@ tmp/*
 
 dist
 api/__tests__/database.sqlite
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
