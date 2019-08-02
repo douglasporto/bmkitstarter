@@ -1,4 +1,4 @@
-# KitStarter Brain & Mind _[api]_
+# KitStarter Brain & Mind _[API]_
 
 Api for a applicatin starter
 
@@ -35,8 +35,5 @@ Api for a applicatin starter
 ## Run the Tests
  - This api was made on TDD (test driven development) with [Jest.js](https://jestjs.io/)
  - `yarn test`
-
-## Swagger Docs API
- - `http://localhost:3333/api-docs/`
 
 ** By [DouglasPorto](http://douglasporto.com.br) **
