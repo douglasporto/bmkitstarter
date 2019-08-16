@@ -1,0 +1,41 @@
+version: '3'
+services:
+  web:
+    container_name: node-alpine-web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    command: node_modules/.bin/nodemon --exec npm start
+    ports:
+      - 3000:3000
+    volumes:
+     - .:/usr/src/app
+     - /usr/src/app/web/node_modules
+    depends_on:
+      - api
+  api:
+    container_name: node-alpine-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    command: node_modules/.bin/nodemon --exec npm start
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3001:3001
+    volumes:
+     - .:/usr/src/app
+     - /usr/src/app/api/node_modules
+    depends_on:
+      - postgres
+    links:
+      - postgres
+  postgres:
+    container_name: database_bmstarter
+    restart: always
+    image: postgres:11.5-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: bmstarter
